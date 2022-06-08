@@ -1,5 +1,3 @@
-# https://koos808.tistory.com/42 이미지 폴더에서 직접 모든 이미지 추출하는 방식으로 변환 필요함. // 이미지 포지션은 image_quality에서 opencv로 외곽 추출한 뒤 가져와야 함
-
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
@@ -65,7 +63,7 @@ class getTextfromImg:
             chklist = self.createList(a)
            
             # 한 단어 사이클마다 별개의 key 값으로 정리   
-            if(len(chklist) != 0 and len(chklist) < 10):
+            if(len(chklist) != 0):
                 temp_result = chklist.to_dict()
                 
                 # 단어 position 추가

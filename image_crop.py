@@ -1,4 +1,4 @@
-import cv2, sys, os
+import cv2, os
 import numpy as np
 from datetime import datetime
 
@@ -12,7 +12,7 @@ def equalizeHist(img):
     return dst
 
 
-def image_crop(original_image, ratio):
+def image_crop(original_image, ratio=1):
     """
     img_crop :: 이미지에서 알약 파트만 추출
     original_image : 원본 이미지
@@ -23,7 +23,6 @@ def image_crop(original_image, ratio):
     image_gray = cv2.cvtColor(dst, cv2.COLOR_BGR2GRAY)
 
     blur = cv2.GaussianBlur(image_gray, ksize=(3,3), sigmaX=0)
-    ret, thresh1 = cv2.threshold(blur, 127, 255, cv2.THRESH_BINARY)
 
     edged = cv2.Canny(blur, 10, 250)
 
@@ -31,7 +30,6 @@ def image_crop(original_image, ratio):
     closed = cv2.morphologyEx(edged, cv2.MORPH_CLOSE, kernel)
 
     contours, _ = cv2.findContours(closed.copy(),cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    total = 0
 
     contours_xy = np.array(contours, dtype=object)
 

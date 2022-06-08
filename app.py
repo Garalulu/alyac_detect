@@ -24,14 +24,14 @@ api = Api(app)
 
 api.add_namespace(Alyac, '/alyac')
 
-result_file = 'images/image.jpg'
+result_file = '../alyac-main/frontend/upload/image.jpg'
 
 async def detect():
     # image.jpg가 있는지 확인
     while(not (os.path.isfile(result_file))):
         continue
     ratio = change_img_quality(result_file, 'images')
-    position, folder = image_crop(r'images\image.jpg', ratio)
+    position, folder = image_crop(result_file, ratio)
     alyac = getTextfromImg(folder, position)
     alyac_list = alyac.getAlyac()
     
@@ -41,7 +41,7 @@ async def check_file():
     # 출력 결과 텍스트로 저장
     alyac_list = await detect() 
     print(alyac_list)
-    with open(r"result\result.txt", 'w') as file:
+    with open(r"../alyac-main/frontend/output/serial_number.txt", 'w') as file:
         file.write(return_print(alyac_list))
 
 
