@@ -24,7 +24,7 @@ api = Api(app)
 
 api.add_namespace(Alyac, '/alyac')
 
-result_file = '../alyac-main/frontend/upload/image.jpg'
+result_file = '../frontend/upload/image.jpg'
 
 async def detect():
     # image.jpg가 있는지 확인
@@ -41,7 +41,7 @@ async def check_file():
     # 출력 결과 텍스트로 저장
     alyac_list = await detect() 
     print(alyac_list)
-    with open(r"../alyac-main/frontend/output/serial_number.txt", 'w') as file:
+    with open(r"../frontend/output/serial_number.txt", 'w') as file:
         file.write(return_print(alyac_list))
 
 
